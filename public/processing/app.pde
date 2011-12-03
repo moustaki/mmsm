@@ -49,13 +49,35 @@ class SquareBody extends Body {
   }
 }
 
-class Eyes {
+class OvalBody extends Body {
   public void draw(Avatar avatar) {
     fill( palette[1] );
-    stroke(palette[0]);
+    stroke(palette[1]);
     strokeWeight( avatar_size * 10);
+    ellipse(avatar.x, avatar.y, avatar.w, avatar.h * 0.8);
+  }
+}
+
+class ImageBody extends Body {
+  PImage img;
+
+  public ImageBody(int seed) {
+    img = loadImage("/processing/" + (seed+1) + ".png");
+  }
+  public void draw(Avatar avatar) {
+    image(img, avatar.x - avatar.w/2, avatar.y - avatar.h/2, avatar.w, avatar.h);
+  }
+}
+
+
+class Eyes {
+  public void draw(Avatar avatar) {
+    fill(255);
+    stroke(1);
+    strokeWeight(1);
     ellipse( avatar.x - (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
     ellipse( avatar.x + (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
+    
   }
 }
 
@@ -63,6 +85,7 @@ class Mouth {
   public void draw(Avatar avatar) {
     noFill();
     stroke(palette[0]);
+    strokeWeight( avatar_size * 10);
     if (avatar_mood > 0.5) {
       arc(avatar.x, avatar.y + (avatar.h/3)*avatar_mood, avatar.w/3, avatar.h/10, 0, PI);
     } else {
@@ -73,7 +96,7 @@ class Mouth {
 
 Avatar avatarFactory(int seed) {
   avatar = new Avatar();
-  avatar.body = new Body();
+  avatar.body = new ImageBody(seed);
   avatar.eyes = new Eyes();
   avatar.mouth = new Mouth();
   return avatar;
@@ -93,7 +116,7 @@ void setup(){
   frameRate( 15 );
   smooth();
   
-  avatar = avatarFactory(0);
+  avatar = avatarFactory((int)random(5.0));
 }
 
 // Main draw loop
