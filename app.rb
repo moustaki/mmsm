@@ -12,5 +12,5 @@ end
 
 get '/' do
   login_required
-  "hello #{user.inspect}"
+  erb :home
 end
