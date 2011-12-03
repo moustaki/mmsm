@@ -74,6 +74,7 @@ DEPENDENCIES
   heroku
   lastfm
   mongoid (~> 2.2.0)
+  rest-client
   shotgun
   sinatra
   sinatra-formhelpers
