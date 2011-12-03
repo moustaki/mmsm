@@ -45,7 +45,17 @@ module Magicbox
     end
 
     def self.avatar_frequency(tracks)
-      rand
+      tempo = 0.0
+      n = 0
+      tracks.each do |track|
+        if track.tempo > 0
+            p track.tempo
+            tempo += track.tempo
+            n += 1
+        end
+      end
+      tempo /= (n * 60)
+      return tempo
     end
 
     def self.avatar_amplitude(tracks)
