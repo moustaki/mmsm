@@ -17,8 +17,8 @@ class Avatar {
   }
   
   void draw() {
-    fWidth = fWidth + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
-    fHeight = fHeight + sin( frameCount * avatar_frequency/ ( (10 * avatar_amplitude)) );
+    fWidth = fWidth + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
+    fHeight = fHeight + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
   
     // Set fill-color to blue
     fill( 0, 121, 184 );
@@ -39,7 +39,7 @@ class Avatar {
     // Draw mouth
     noFill();
     stroke(255, 0, 0);
-    if (avatar_mood > 0.5) {
+    if (avatar_mood > 0.7) {
       arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, 0, PI);
     } else {
       arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, PI, TWO_PI);

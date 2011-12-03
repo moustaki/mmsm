@@ -7,6 +7,7 @@ module Magicbox
 
     attr_accessor :artist, :id, :title, :key, :mode, :time_signature, :loudness, :energy, :tempo, :danceability
     @set = false
+    @decay = 0.5
 
     def initialize(title, artist = nil)
         data = JSON.parse(RestClient.get 'http://developer.echonest.com/api/v4/song/search', { :params => {
@@ -76,10 +77,12 @@ module Magicbox
 
     def self.avatar_mood(tracks)
       mode = 0.0
-      tracks.each do |track|
-        mode += track.mode
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        mode += track.mode * (i ** @decay)
+        norm += i ** @decay
       end
-      mode /= tracks.size
+      mode /= norm
       return mode
     end
 
