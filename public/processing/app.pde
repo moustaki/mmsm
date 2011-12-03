@@ -17,8 +17,8 @@ class Avatar {
   }
   
   void draw() {
-    fWidth = fWidth + sin( frameCount / ( (10 * avatar_amplitude) * avatar_frequency) );
-    fHeight = fHeight + sin( frameCount / ( (10 * avatar_amplitude) * avatar_frequency) );
+    fWidth = fWidth + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
+    fHeight = fHeight + sin( frameCount * avatar_frequency/ ( (10 * avatar_amplitude)) );
   
     // Set fill-color to blue
     fill( 0, 121, 184 );
