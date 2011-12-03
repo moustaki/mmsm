@@ -5,43 +5,67 @@
     <% artists = [] %>
     <h3><%= @user1 %></h3>
     <% artist = @artists1[rand(@artists1.size)] %>
-    <% artists << artist %>
+    <% artists << artist.mbid %>
     <% rand_subject = artist.random_subject_not_in(subjects) %>
     <% subjects << rand_subject %>
     <p>
       Did you know that <%= artist.name %> is a <%= rand_subject['label'] %>?
     </p>
     <h3><%= @user2 %></h3>
-    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2.select {|a| not artists.member? a}, rand_subject) %>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2.select {|a| not artists.member? a.mbid}, rand_subject) %>
     <% if artist %>
-    <% artists << artist %>
+    <% artists << artist.mbid %>
     <p>
-      Oh yeah? And did you know that <%= artist.name %> is also a <%= rand_subject['label'] %>, and that
+      Oh yeah? And did you know that <%= artist.name %> is a <%= rand_subject['label'] %> as well, and that
       <% rand_subject = artist.random_subject_not_in(subjects) %>
       <% subjects << rand_subject %>
       <%= artist.name %> is also a <%= rand_subject['label'] %>?
     </p>
     <h2>Round two!</h2>
     <h3><%= @user1 %></h3>
-    <% artist = Magicbox::Artist.find_artist_by_subject(@artists1.select {|a| not artists.member? a}, rand_subject) %>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists1.select {|a| not artists.member? a.mbid}, rand_subject) %>
     <% if artist %>
-    <% artists << artist %>
+    <% artists << artist.mbid %>
     <p>
-      Oh yeah? And did you know that <%= artist.name %> is also a <%= rand_subject['label'] %>, and that
+      Oh yeah? And did you know that <%= artist.name %> is a <%= rand_subject['label'] %> as well, and that
       <% rand_subject = artist.random_subject_not_in(subjects) %>
       <% subjects << rand_subject %>
       <%= artist.name %> is also a <%= rand_subject['label'] %>?
     </p>
     <h3><%= @user2 %></h3>
-    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2.select {|a| not artists.member? a}, rand_subject) %>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2.select {|a| not artists.member? a.mbid}, rand_subject) %>
     <% if artist %>
-    <% artists << artist %>
+    <% artists << artist.mbid %>
     <p>
-      Oh yeah? And did you know that <%= artist.name %> is also a <%= rand_subject['label'] %>, and that
+      Oh yeah? And did you know that <%= artist.name %> is a <%= rand_subject['label'] %> as well, and that
       <% rand_subject = artist.random_subject_not_in(subjects) %>
       <% subjects << rand_subject %>
       <%= artist.name %> is also a <%= rand_subject['label'] %>?
     </p>
+    <h2>Round three!</h2>
+    <h3><%= @user1 %></h3>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists1.select {|a| not artists.member? a.mbid}, rand_subject) %>
+    <% if artist %>
+    <% artists << artist.mbid %>
+    <p>
+      Oh yeah? And did you know that <%= artist.name %> is a <%= rand_subject['label'] %> as well, and that
+      <% rand_subject = artist.random_subject_not_in(subjects) %>
+      <% subjects << rand_subject %>
+      <%= artist.name %> is also a <%= rand_subject['label'] %>?
+    </p>
+    <h3><%= @user2 %></h3>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2.select {|a| not artists.member? a.mbid}, rand_subject) %>
+    <% if artist %>
+    <% artists << artist.mbid %>
+    <p>
+      Oh yeah? And did you know that <%= artist.name %> is a <%= rand_subject['label'] %> as well, and that
+      <% rand_subject = artist.random_subject_not_in(subjects) %>
+      <% subjects << rand_subject %>
+      <%= artist.name %> is also a <%= rand_subject['label'] %>?
+    </p>
+    <p>DRAW!</p>
+    <% end %>
+    <% end %>
     <% end %>
     <% end %>
     <% end %>
