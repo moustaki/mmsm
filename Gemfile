@@ -2,6 +2,8 @@ source :rubygems
 
 gem 'twitter_oauth'
 
+gem 'lastfm'
+
 gem 'sinatra'
 gem 'sinatra-formhelpers'
 gem 'sinatra-twitter-oauth'

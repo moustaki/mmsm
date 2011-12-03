@@ -14,31 +14,6 @@ class Base
   end
 end
 
-class Avatar
-  include Mongoid::Document
-  
-  field :username, type: String
-  index :username, unique: true
-  
-  validates_presence_of :username
-  
-  embeds_many :tracks
-end
-
-class Artist
-  include Mongoid::Document
-  
-  
-end
-
-class Track
-  include Mongoid::Document
-  
-  field :artist, type: String
-  field :title, type: String
-  
-  validates_presence_of :artist
-  validates_presence_of :title 
-  
-  embedded_in :avatar 
-end
+require_relative 'models/artist'
+require_relative 'models/avatar'
+require_relative 'models/track'

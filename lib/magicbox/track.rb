@@ -1,6 +1,4 @@
-require 'rubygems'
 require 'rest_client'
-require 'artist'
 require 'json'
 
 module Magicbox
