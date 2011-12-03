@@ -10,6 +10,8 @@ gem 'bson_ext'
 
 gem 'unicorn'
 
+gem 'rest-client'
+
 group :development do
   gem 'heroku'
   gem 'shotgun'

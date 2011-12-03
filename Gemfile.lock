@@ -63,6 +63,7 @@ DEPENDENCIES
   bson_ext
   heroku
   mongoid (~> 2.2.0)
+  rest-client
   shotgun
   sinatra
   sinatra-twitter-oauth
