@@ -4,6 +4,10 @@ require 'sinatra/form_helpers'
 # require 'sinatra-twitter-oauth'
 require 'lastfm'
 
+require 'dalli'
+require 'rack/cache'
+require 'restclient/components'
+
 # require './models'
 require_relative 'lib/magicbox/artist'
 require_relative 'lib/magicbox/track'
@@ -18,6 +22,7 @@ configure do
   @@lastfm = Lastfm.new(ENV['LASTFM_API_KEY'] || @@config['lastfm_api_key'], ENV['LASTFM_API_SECRET'] || @@config['lastfm_api_secret'])
   ENV['ECHONEST_API_KEY'] ||= @@config['echonest_api_key']
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
+  RestClient.enable Rack::Cache
 end
 
 get '/' do
