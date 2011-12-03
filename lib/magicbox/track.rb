@@ -48,7 +48,12 @@ module Magicbox
     end
 
     def self.avatar_colour(tracks)
-      rand
+      key = 0.0
+      tracks.each do |track|
+        key += track.key
+      end
+      key /= (tracks.size * 11.0)
+      return key
     end
 
     def self.avatar_frequency(tracks)
