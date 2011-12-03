@@ -13,6 +13,9 @@ int delay = 16;
 
 // Setup the Processing Canvas
 void setup(){
+  setupAvatar();
+  radius = avatar_size * 100.0;
+  
   size( 200, 200 );
   strokeWeight( 10 );
   frameRate( 15 );
