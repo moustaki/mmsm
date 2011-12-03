@@ -9,6 +9,7 @@
         <li><%= track.artist.name %> - <%= track.title %></li>
       <% end %>
     </ul>
+    
     <h2>I know more than you</h2>
     <% rand_artist = @tracks[rand(@tracks.size)].artist %>
     <% subjects = rand_artist.subjects %>
@@ -16,6 +17,15 @@
     <p>
       <%= rand_artist.name %> is a <%= rand_subject['label'] %>
     </p>
+    
+    <h2>Pick a fight!</h2>
+    <%= form('/go', :get) %>
+      <%= hidden(:user1, :lastfm, :value => @username) %>
+      <%= label(:user2, :lastfm, 'Fight Last.fm User Name') %>
+      <%= input(:user2, :lastfm) %>
+    <%= submit %>
+    
+    
   </div>
 </div>
 
