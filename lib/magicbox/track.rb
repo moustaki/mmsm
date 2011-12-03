@@ -65,7 +65,7 @@ module Magicbox
       return tempo
     end
 
-    def self.avatar_amplitude(tracks)
+    def self.avatar_speed(tracks)
       amp = 0.0
       tracks.each do |track|
         amp += track.danceability
@@ -83,7 +83,7 @@ module Magicbox
       return mode
     end
 
-    def self.avatar_speed(tracks)
+    def self.avatar_amplitude(tracks)
       nrj = 0.0
       tracks.each do |track|
         nrj += track.energy
