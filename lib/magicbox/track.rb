@@ -36,6 +36,30 @@ module Magicbox
       @set
     end
 
+    def self.avatar_size(tracks)
+      rand
+    end
+
+    def self.avatar_colour(tracks)
+      rand
+    end
+
+    def self.avatar_frequency(tracks)
+      rand
+    end
+
+    def self.avatar_amplitude(tracks)
+      rand
+    end
+
+    def self.avatar_mood(tracks)
+      rand
+    end
+
+    def self.avatar_speed(tracks)
+      rand
+    end
+
   end
 
 end
