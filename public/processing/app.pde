@@ -5,14 +5,19 @@
   Native Processing compatible 
 */  
 
+String processingString = "Hello from Processing!";  
+
 // Global variables
-float radius = 50.0;
+//float radius = 50.0;
 int X, Y;
 int nX, nY;
 int delay = 16;
 
 // Setup the Processing Canvas
 void setup(){
+  setupAvatar();
+  printMessage(jsString + " " + processingString + " " + radius) ;  
+
   size( 200, 200 );
   strokeWeight( 10 );
   frameRate( 15 );
