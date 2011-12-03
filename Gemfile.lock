@@ -62,7 +62,7 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   heroku
-  mongoid (= 2.1)
+  mongoid (= 2.1.0)
   shotgun
   sinatra
   sinatra-twitter-oauth
