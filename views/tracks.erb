@@ -3,7 +3,7 @@
     <canvas data-processing-sources="/processing/app.pde"></canvas>
   </div>
   <div class="six columns">
-    <h2>I'm listening to</h2>    
+    <h2>Hi, I'm <%= @username %>. <br>I'm listening to:</h2>
     <ul>
       <% @tracks.each do |track| %>
         <li><%= track.artist.name %> - <%= track.title %></li>

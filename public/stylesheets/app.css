@@ -14,7 +14,8 @@
    Shared Styles
 ----------------------------------------- */
 
-
+h1, h2 { font-family: 'Creepster Caps', cursive; }
+h1 { text-align: center; }
 
 
 
