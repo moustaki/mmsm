@@ -8,8 +8,8 @@
     var avatar_amplitude;
     var avatar_mood;
     var setupAvatar = function() {
-      sketch_width = <%= @sketch_width %>; 
-      sketch_height = <%= @sketch_width %>;
+      sketch_width = 350; 
+      sketch_height = 350;
       
       avatar_size = <%= Magicbox::Track.avatar_size(@tracks) %>;
       avatar_colour = <%= Magicbox::Track.avatar_colour(@tracks) %>;

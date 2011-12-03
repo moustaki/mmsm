@@ -13,9 +13,6 @@ gem 'sinatra-twitter-oauth'
 
 gem 'unicorn'
 
-gem 'i18n'
-gem 'wurfl-lite-middleware'
-
 gem 'rest-client'
 
 group :development do
