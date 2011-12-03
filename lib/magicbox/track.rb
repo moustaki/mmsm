@@ -79,7 +79,12 @@ module Magicbox
     end
 
     def self.avatar_speed(tracks)
-      rand
+      nrj = 0.0
+      tracks.each do |track|
+        nrj += track.energy
+      end
+      nrj /= tracks.size
+      return nrj
     end
 
   end
