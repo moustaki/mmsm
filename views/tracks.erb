@@ -9,6 +9,13 @@
         <li><%= track.artist.name %> - <%= track.title %></li>
       <% end %>
     </ul>
+    <h2>Random fact</h2>
+    <% rand_artist = @tracks[rand(@tracks.size)].artist %>
+    <% subjects = rand_artist.subjects %>
+    <% rand_subject = subjects[rand(subjects.size)] %>
+    <p>
+      <%= rand_artist.name %> is a <%= rand_subject['label'] %>
+    </p>
   </div>
 </div>
 
