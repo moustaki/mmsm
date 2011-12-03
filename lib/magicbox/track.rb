@@ -39,9 +39,10 @@ module Magicbox
     def self.avatar_size(tracks)
       loudness = 0.0
       tracks.each do |track|
-        loudness -= track.loudness
+        loudness += track.loudness
       end
       loudness /= tracks.size
+      p loudness
       loudness = (20 + loudness) / 20.0
       loudness = 0.1 if loudness < 0.1
       return loudness
@@ -65,7 +66,12 @@ module Magicbox
     end
 
     def self.avatar_mood(tracks)
-      rand
+      mode = 0.0
+      tracks.each do |track|
+        mode += track.mode
+      end
+      mode /= tracks.size
+      return mode
     end
 
     def self.avatar_speed(tracks)
