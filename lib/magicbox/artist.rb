@@ -29,6 +29,20 @@ module Magicbox
       return bindings[0]['a']['value']
     end
 
+    def subjects
+      data = JSON.parse(RestClient.get ENV['SEEVL_SPARQL'], { :params => {
+        :query  => "SELECT ?s ?l WHERE { <#{seevl_uri}> <http://purl.org/dc/terms/subject> ?s . ?s <http://www.w3.org/2004/02/skos/core#prefLabel> ?l }",
+        :format => 'json'
+      }})
+      subjects = []
+      data['results']['bindings'].each do |binding|
+        category_uri = binding['s']['value']
+        category_label = binding['l']['value']
+        subjects << { 'uri' => category_uri, 'label' => category_label }
+      end
+      return subjects
+    end 
+
   end
 
 end
