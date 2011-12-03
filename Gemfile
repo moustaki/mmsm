@@ -13,6 +13,8 @@ gem 'sinatra-twitter-oauth'
 
 gem 'unicorn'
 
+gem 'i18n'
+
 gem 'rest-client'
 
 group :development do
