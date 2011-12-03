@@ -2,10 +2,10 @@ require 'yaml'
 require 'sinatra'
 require 'sinatra-twitter-oauth'
 
-require './models'
+# require './models'
 
 configure do
-  Base.setup
+  # Base.setup
   set :sessions, true
   @@config = YAML.load_file("config.yml") rescue nil || {}
   set :twitter_oauth_config,  
