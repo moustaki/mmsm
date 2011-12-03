@@ -16,6 +16,7 @@ configure do
     :secret   => ENV['CONSUMER_SECRET'] || @@config['consumer_secret'],
     :callback => ENV['CALLBACK_URL'] || @@config['callback_url']
   @@lastfm = Lastfm.new(ENV['LASTFM_API_KEY'] || @@config['lastfm_api_key'], ENV['LASTFM_API_SECRET'] || @@config['lastfm_api_secret'])
+  ENV['LASTFM_KEY'] ||= @@lastfm
   ENV['ECHONEST_API_KEY'] ||= @@config['echonest_api_key']
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
 end
@@ -23,6 +24,14 @@ end
 get '/lastfm/:username' do |username|
   @tracks = @@lastfm.user.get_recent_tracks(username, 10).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}.select {|t| t.empty?}
   erb :tracks
+end
+
+get '/fight/:user1/:user2' do |user1, user2|
+  @user1 = user1
+  @user2 = user2
+  @artists1 = Magicbox::Artist.find_most_played_artist_for_lastfm_user(user1)
+  @artists2 = Magicbox::Artist.find_most_played_artist_for_lastfm_user(user2)
+  erb :fight
 end
 
 get '/' do
