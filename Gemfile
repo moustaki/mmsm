@@ -5,7 +5,7 @@ gem 'twitter_oauth'
 gem 'sinatra'
 gem 'sinatra-twitter-oauth'
 
-gem 'mongoid'
+gem 'mongoid', '2.1'
 gem 'bson_ext'
 
 gem 'unicorn'
