@@ -22,7 +22,9 @@ configure do
   @@lastfm = Lastfm.new(ENV['LASTFM_API_KEY'] || @@config['lastfm_api_key'], ENV['LASTFM_API_SECRET'] || @@config['lastfm_api_secret'])
   ENV['ECHONEST_API_KEY'] ||= @@config['echonest_api_key']
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
-  RestClient.enable Rack::Cache
+  RestClient.enable Rack::Cache,
+    :verbose     => true,
+    :default_ttl => 9999999999
 end
 
 get '/' do

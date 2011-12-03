@@ -2,12 +2,13 @@ module Magicbox
 
   class Artist
 
-    attr_accessor :id, :name
+    attr_accessor :id, :name, :image_url
 
-    def initialize(name, id, mbid = nil)
+    def initialize(name, id, mbid = nil, image_url = nil)
       @name = name
       @id = id
       @mbid = mbid
+      @image_url = image_url
     end
 
     def mbid
@@ -66,7 +67,14 @@ module Magicbox
       }})
       artists = []
       data['topartists']['artist'].each do |a|
-        artist = Artist.new(a['name'], nil, a['mbid'])
+        image_url = nil
+        a['image'].each do |i|
+          if i['size'] == 'medium'
+            image_url = i['#text']
+            break
+          end
+        end
+        artist = Artist.new(a['name'], nil, a['mbid'], image_url)
         artists << artist if artist.seevl_uri
       end
       return artists
