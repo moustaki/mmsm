@@ -25,8 +25,20 @@ class Avatar
   embeds_many :tracks
 end
 
+class Artist
+  include Mongoid::Document
+  
+  
+end
+
 class Track
   include Mongoid::Document
+  
   field :artist, type: String
   field :title, type: String
+  
+  validates_presence_of :artist
+  validates_presence_of :title 
+  
+  embedded_in :avatar 
 end

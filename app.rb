@@ -7,7 +7,6 @@ require './models'
 
 configure do
   Base.setup
-  set :sessions, true
   @@config = YAML.load_file("config.yml") rescue nil || {}
   set :twitter_oauth_config,  
     :key => ENV['CONSUMER_KEY'] || @@config['consumer_key'],
@@ -28,8 +27,7 @@ post '/tracks' do
   login_required
   
   @avatar = Avatar.find_or_initialize_by(:username => user.screen_name)
-  @avatar.tracks << Track.new(artist: params['track']['artist'], title: params['track']['title'])
-  @avatar.save
+  @avatar.tracks.create(artist: params['track']['artist'], title: params['track']['title'])
   
   redirect '/'
 end
