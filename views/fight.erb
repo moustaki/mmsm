@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="six columns">
+    <h2>Fight!</h2>
+    <h3><%= @user1 %></h3>
+    <% rand_artist = @artists1[rand(@artists1.size)] %>
+    <% subjects = rand_artist.subjects %>
+    <% rand_subject = subjects[rand(subjects.size)] %>
+    <p>
+      Did you know that <%= rand_artist.name %> is a <%= rand_subject['label'] %>?
+    </p>
+    <h3><%= @user2 %></h3>
+    <% artist = Magicbox::Artist.find_artist_by_subject(@artists2, rand_subject) %>
+    <% if artist %>
+    <p>
+      Oh yeah? And did you know that <%= artist.name %> is also a <%= rand_subject['label'] %>, and that
+      <% rand_subject = artist.subjects[rand(subjects.size)] %>
+      <%= artist.name %> is also a <%= rand_subject['label'] %>?
+    </p>
+    <% end %>
+  </div>
+</div>
