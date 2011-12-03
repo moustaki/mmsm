@@ -21,7 +21,7 @@ configure do
 end
 
 get '/lastfm/:username' do |username|
-  @tracks = @@lastfm.user.get_recent_tracks(username, 3).map { |t| Magicbox::Track.new(t['name'], t['artist']['name'])}
+  @tracks = @@lastfm.user.get_recent_tracks(username, 3).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}
   erb :tracks
 end
 
