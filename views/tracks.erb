@@ -9,7 +9,7 @@
         <li><%= track.artist.name %> - <%= track.title %></li>
       <% end %>
     </ul>
-    <h2>Random fact</h2>
+    <h2>I know more than you</h2>
     <% rand_artist = @tracks[rand(@tracks.size)].artist %>
     <% subjects = rand_artist.subjects %>
     <% rand_subject = subjects[rand(subjects.size)] %>
