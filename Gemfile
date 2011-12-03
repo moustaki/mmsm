@@ -3,6 +3,7 @@ source :rubygems
 gem 'twitter_oauth'
 
 gem 'sinatra'
+gem 'sinatra-formhelpers'
 gem 'sinatra-twitter-oauth'
 
 gem 'mongoid', '~> 2.2.0'
