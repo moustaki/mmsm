@@ -19,17 +19,4 @@
   </div>
 </div>
 
-<div id="msg">  
-</div>
-<script type="application/javascript">
-    var jsString = "Hello from JavaScript!";
-    var radius;
-    var delay;
-    var setupAvatar = function() {
-      radius = <%= rand(100).to_f %>;
-      delay = <%= rand(16) %>
-    }
-    var printMessage = function (msg) {
-      document.getElementById('msg').innerHTML = "Message: " + msg;  
-    };
-</script>  
+<%= erb(:_setup_avatar) %>
