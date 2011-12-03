@@ -51,13 +51,18 @@ module Magicbox
       return @subjects
     end 
 
+    def random_subject_not_in(list)
+      subjs = subjects.select { |s| not list.member? s }
+      return subjs[rand(subjs.size)]
+    end
+
     def self.find_most_played_artist_for_lastfm_user(user)
       data = JSON.parse(RestClient.get "http://ws.audioscrobbler.com/2.0/", { :params => {
         :method => 'user.gettopartists',
         :user => user,
         :format => 'json',
         :api_key => ENV['LASTFM_KEY'],
-        :limit => 10
+        :limit => 20
       }})
       artists = []
       data['topartists']['artist'].each do |a|
