@@ -8,10 +8,12 @@ gem 'sinatra'
 gem 'sinatra-formhelpers'
 gem 'sinatra-twitter-oauth'
 
-gem 'mongoid', '~> 2.2.0'
-gem 'bson_ext'
+# gem 'mongoid', '~> 2.2.0'
+# gem 'bson_ext'
 
 gem 'unicorn'
+
+gem 'i18n'
 
 gem 'rest-client'
 
