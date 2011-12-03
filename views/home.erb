@@ -1,2 +1,21 @@
-<canvas data-processing-sources="/processing/app.pde"></canvas>
-<%= user.inspect %>
+<div class="row">
+  <div class="six columns">
+    <canvas data-processing-sources="/processing/app.pde"></canvas>
+  </div>
+  <div class="six columns">
+    <h2>I'm listening to</h2>
+    <%= form('/tracks', :post) %>
+      <%= input(:track, :artist) %>
+      <%= input(:track, :title) %>
+    <%= submit %>
+    
+    <ul>
+      <pre><%= @avatar.tracks.inspect %></pre>
+      
+      <% @avatar.tracks.each do |track| %>
+        <li><%= track.artist %> - <%= track.title %></li>
+      <% end %>
+    </ul>
+    
+  </div>
+</div>

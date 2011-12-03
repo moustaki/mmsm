@@ -1,11 +1,12 @@
 require 'yaml'
 require 'sinatra'
+require 'sinatra/form_helpers'
 require 'sinatra-twitter-oauth'
 
-# require './models'
+require './models'
 
 configure do
-  # Base.setup
+  Base.setup
   set :sessions, true
   @@config = YAML.load_file("config.yml") rescue nil || {}
   set :twitter_oauth_config,  
@@ -16,5 +17,19 @@ end
 
 get '/' do
   login_required
+  
+  Avatar.all.each { |a| p a }
+  @avatar = Avatar.find_or_create_by(:username => user.screen_name)
+  
   erb :home
+end
+
+post '/tracks' do
+  login_required
+  
+  @avatar = Avatar.find_or_initialize_by(:username => user.screen_name)
+  @avatar.tracks << Track.new(artist: params['track']['artist'], title: params['track']['title'])
+  @avatar.save
+  
+  redirect '/'
 end

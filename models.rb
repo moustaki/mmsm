@@ -14,6 +14,19 @@ class Base
   end
 end
 
-class User
+class Avatar
   include Mongoid::Document
+  
+  field :username, type: String
+  index :username, unique: true
+  
+  validates_presence_of :username
+  
+  embeds_many :tracks
+end
+
+class Track
+  include Mongoid::Document
+  field :artist, type: String
+  field :title, type: String
 end
