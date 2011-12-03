@@ -1,7 +1,7 @@
 require 'yaml'
 require 'sinatra'
 require 'sinatra/form_helpers'
-require 'sinatra-twitter-oauth'
+# require 'sinatra-twitter-oauth'
 require 'lastfm'
 
 # require './models'
@@ -16,12 +16,24 @@ configure do
     :secret   => ENV['CONSUMER_SECRET'] || @@config['consumer_secret'],
     :callback => ENV['CALLBACK_URL'] || @@config['callback_url']
   @@lastfm = Lastfm.new(ENV['LASTFM_API_KEY'] || @@config['lastfm_api_key'], ENV['LASTFM_API_SECRET'] || @@config['lastfm_api_secret'])
-  ENV['LASTFM_KEY'] ||= @@lastfm
   ENV['ECHONEST_API_KEY'] ||= @@config['echonest_api_key']
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
 end
 
+get '/' do
+  erb :home
+end
+
+get '/go' do
+  if params['user1'] && params['user2']
+    redirect "/fight/#{params['user1']['lastfm']}/#{params['user2']['lastfm']}"
+  elsif params['user1']
+    redirect "/lastfm/#{params['user1']['lastfm']}"
+  end
+end
+
 get '/lastfm/:username' do |username|
+  @username = username
   @tracks = @@lastfm.user.get_recent_tracks(username, 10).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}.select {|t| t.empty?}
   erb :tracks
 end
@@ -34,17 +46,12 @@ get '/fight/:user1/:user2' do |user1, user2|
   erb :fight
 end
 
-get '/' do
-  login_required
-  erb :home
-end
-
-post '/tracks' do
-  login_required
-  
-  @avatar = Avatar.find_or_initialize_by(:username => user.screen_name)
-  track = Track.new(artist: params['track']['artist'], title: params['track']['title'])
-  @avatar.tracks.create(artist: params['track']['artist'], title: params['track']['title'])
-  
-  redirect '/'
-end
+# post '/tracks' do
+#   login_required
+#   
+#   @avatar = Avatar.find_or_initialize_by(:username => user.screen_name)
+#   track = Track.new(artist: params['track']['artist'], title: params['track']['title'])
+#   @avatar.tracks.create(artist: params['track']['artist'], title: params['track']['title'])
+#   
+#   redirect '/'
+# end

@@ -40,9 +40,9 @@ class Avatar {
     noFill();
     stroke(255, 0, 0);
     if (avatar_mood > 0.5) {
-      arc(x, y + (fHeight/5), fWidth/3, fHeight/10, 0, PI);
+      arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, 0, PI);
     } else {
-      arc(x, y + (fHeight/5), fWidth/3, fHeight/10, PI, TWO_PI);
+      arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, PI, TWO_PI);
     }
   }
 }
@@ -78,3 +78,5 @@ void mouseMoved() {
   mX = mouseX;
   mY = mouseY;  
 }
+
+

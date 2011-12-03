@@ -1,12 +1,12 @@
 source :rubygems
 
-gem 'twitter_oauth'
+# gem 'twitter_oauth'
 
 gem 'lastfm'
 
 gem 'sinatra'
 gem 'sinatra-formhelpers'
-gem 'sinatra-twitter-oauth'
+# gem 'sinatra-twitter-oauth'
 
 # gem 'mongoid', '~> 2.2.0'
 # gem 'bson_ext'

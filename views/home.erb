@@ -1,19 +1,8 @@
 <div class="row">
   <div class="six columns">
-    <canvas data-processing-sources="/processing/app.pde"></canvas>
-  </div>
-  <div class="six columns">
-    <h2>I'm listening to</h2>
-    <%= form('/tracks', :post) %>
-      <%= input(:track, :artist) %>
-      <%= input(:track, :title) %>
+    <%= form('/go', :get) %>
+      <%= label(:user1, :lastfm, 'Last.fm User Name') %>
+      <%= input(:user1, :lastfm) %>
     <%= submit %>
-    
-    <ul>
-      <% @tracks.each do |track| %>
-        <li><%= track.artist %> - <%= track.title %></li>
-      <% end %>
-    </ul>
-    
   </div>
 </div>
