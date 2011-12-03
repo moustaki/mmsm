@@ -21,11 +21,11 @@ class Avatar {
     fHeight = fHeight + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
   
     // Set fill-color to blue
-    fill( 0, 121, 184 );
+    fill( 255 * avatar_colour, 255 * avatar_colour, 255 * avatar_colour );
   
   
     // Set stroke-color white
-    stroke(255); 
+    stroke(255 * (1 - avatar_colour), 255 * (1 - avatar_colour), 255 * (1 - avatar_colour));
     strokeWeight( avatar_size * 10 );
   
     // Draw body
@@ -38,7 +38,7 @@ class Avatar {
     
     // Draw mouth
     noFill();
-    stroke(255, 0, 0);
+    stroke(255 * (1 - avatar_colour), 255 * (1 - avatar_colour), 255 * (1 - avatar_colour));
     if (avatar_mood > 0.7) {
       arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, 0, PI);
     } else {
