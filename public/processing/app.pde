@@ -23,6 +23,7 @@ class Avatar {
     // Set fill-color to blue
     fill( 0, 121, 184 );
   
+  
     // Set stroke-color white
     stroke(255); 
     strokeWeight( avatar_size * 10 );
@@ -35,10 +36,14 @@ class Avatar {
     ellipse( x - (fWidth/8), y - (fHeight/5), fWidth/10, fHeight/10 );
     ellipse( x + (fWidth/8), y - (fHeight/5), fWidth/10, fHeight/10 );
     
-    strokeWeight(0);
-    fill( 184, 121, 0 );
-    ellipse( x, y + (fHeight/5), fWidth/3, fHeight/10 );
-
+    // Draw mouth
+    noFill();
+    stroke(255, 0, 0);
+    if (avatar_mood > 0.5) {
+      arc(x, y + (fHeight/5), fWidth/3, fHeight/10, 0, PI);
+    } else {
+      arc(x, y + (fHeight/5), fWidth/3, fHeight/10, PI, TWO_PI);
+    }
   }
 }
 
