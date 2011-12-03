@@ -1,11 +1,16 @@
 class Avatar {
-  float fWidth, fHeight, fStroke;
-  float x, y;
+  Body body;
+  Eyes eyes;
+  Mouth mouth;
+  
+  int x, y;
+  float w, h, s;
+  int c;
   
   Avatar() {
-    fWidth = avatar_size * 200.0;
-    fHeight = fWidth;
-    fStroke = avatar_size * 10;
+    w = avatar_size * 200.0;
+    h = w;
+    s = avatar_size * 10;
     x = width / 2;
     y = height / 2;
   }
@@ -17,42 +22,69 @@ class Avatar {
   }
   
   void draw() {
-    fWidth = fWidth + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
-    fHeight = fHeight + sin( frameCount * avatar_frequency/ ( (10 * avatar_amplitude)) );
+    w = w + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
+    h = h + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
   
-    // Set fill-color to blue
-    fill( 0, 121, 184 );
-  
-  
-    // Set stroke-color white
-    stroke(255); 
-    strokeWeight( avatar_size * 10 );
-  
-    // Draw body
-    ellipse(x, y, fWidth, fHeight);                  
-    
-    // Draw eyes
-    fill(0);
-    ellipse( x - (fWidth/8), y - (fHeight/5), fWidth/10, fHeight/10 );
-    ellipse( x + (fWidth/8), y - (fHeight/5), fWidth/10, fHeight/10 );
-    
-    // Draw mouth
+    body.draw(this);    
+    eyes.draw(this);
+    mouth.draw(this);    
+  }
+}
+
+class Body {
+  public void draw(Avatar avatar) {
+    fill( palette[1] );
+    stroke( palette[1]);
+    strokeWeight( avatar_size * 10);
+    ellipse(avatar.x, avatar.y, avatar.w, avatar.h);
+  }
+}
+
+class SquareBody extends Body {
+  public void draw(Avatar avatar) {
+    fill( palette[1] );
+    stroke(palette[1]);
+    strokeWeight( avatar_size * 10);
+    rect(avatar.x - avatar.w/2, avatar.y - avatar.w/2, avatar.w, avatar.h);
+  }
+}
+
+class Eyes {
+  public void draw(Avatar avatar) {
+    fill( palette[1] );
+    stroke(palette[0]);
+    strokeWeight( avatar_size * 10);
+    ellipse( avatar.x - (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
+    ellipse( avatar.x + (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
+  }
+}
+
+class Mouth {
+  public void draw(Avatar avatar) {
     noFill();
-    stroke(255, 0, 0);
+    stroke(palette[0]);
     if (avatar_mood > 0.5) {
-      arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, 0, PI);
+      arc(avatar.x, avatar.y + (avatar.h/3)*avatar_mood, avatar.w/3, avatar.h/10, 0, PI);
     } else {
-      arc(x, y + (fHeight/3)*avatar_mood, fWidth/3, fHeight/10, PI, TWO_PI);
+      arc(avatar.x, avatar.y + (avatar.h/3)*avatar_mood, avatar.w/3, avatar.h/10, PI, TWO_PI);
     }
   }
 }
 
+Avatar avatarFactory(int seed) {
+  avatar = new Avatar();
+  avatar.body = new Body();
+  avatar.eyes = new Eyes();
+  avatar.mouth = new Mouth();
+  return avatar;
+}
 
 // Global variables
 int mX, mY;
 int delay = 16;
 
 Avatar avatar;
+int palette[] = { #f0f6dc, #08b8ab, #3ab451 };
 
 // Setup the Processing Canvas
 void setup(){
@@ -61,16 +93,13 @@ void setup(){
   frameRate( 15 );
   smooth();
   
-  avatar = new Avatar();
+  avatar = avatarFactory(0);
 }
 
 // Main draw loop
 void draw() {
-  // Fill canvas grey
-  background( 100 );
-
+  background(palette[0]);
   avatar.update();  
-  
   avatar.draw();
 }
 
