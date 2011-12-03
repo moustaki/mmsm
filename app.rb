@@ -15,7 +15,7 @@ configure do
     :key => ENV['CONSUMER_KEY'] || @@config['consumer_key'],
     :secret   => ENV['CONSUMER_SECRET'] || @@config['consumer_secret'],
     :callback => ENV['CALLBACK_URL'] || @@config['callback_url']
-  @@lastfm = Lastfm.new(@@config['lastfm_api_key'], @@config['lastfm_api_secret'])
+  @@lastfm = Lastfm.new(ENV['LASTFM_API_KEY'] || @@config['lastfm_api_key'], ENV['LASTFM_API_SECRET'] || @@config['lastfm_api_secret'])
   ENV['ECHONEST_API_KEY'] ||= @@config['echonest_api_key']
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
 end
