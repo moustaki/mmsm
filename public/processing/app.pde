@@ -1,9 +1,3 @@
-/* 
-  PROCESSINGJS.COM - BASIC EXAMPLE
-  Delayed Mouse Tracking  
-  MIT License - Hyper-Metrix.com/F1LT3R
-  Native Processing compatible 
-*/  
 
 // Global variables
 float radius = 50.0;
@@ -14,13 +8,13 @@ int delay = 16;
 // Setup the Processing Canvas
 void setup(){
   setupAvatar();
-  radius = avatar_size * 100.0;
+  radius = avatar_size * 200.0;
   
-  size( 200, 200 );
-  strokeWeight( 10 );
+  size( 350, 350 );
+  strokeWeight( avatar_size * 10 );
   frameRate( 15 );
-  X = width / 2;
-  Y = width / 2;
+  X = width / (int)(4.0 * avatar_speed);
+  Y = width / (int)(4.0 * avatar_speed);
   nX = X;
   nY = Y;  
 }
@@ -28,7 +22,7 @@ void setup(){
 // Main draw loop
 void draw(){
   
-  radius = radius + sin( frameCount / 4 );
+  radius = radius + sin( frameCount / ( (10 * avatar_amplitude) * avatar_frequency) );
   
   // Track circle to new destination
   X+=(nX-X)/delay;
