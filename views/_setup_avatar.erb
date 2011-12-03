@@ -1,10 +1,16 @@
 <script type="application/javascript">
+    var sketch_width;
+    var sketch_height;
+    
     var avatar_size;
     var avatar_colour;
     var avatar_frequency;
     var avatar_amplitude;
     var avatar_mood;
     var setupAvatar = function() {
+      sketch_width = <%= @sketch_width %>; 
+      sketch_height = <%= @sketch_width %>;
+      
       avatar_size = <%= Magicbox::Track.avatar_size(@tracks) %>;
       avatar_colour = <%= Magicbox::Track.avatar_colour(@tracks) %>;
       avatar_frequency = <%= Magicbox::Track.avatar_frequency(@tracks) %>;

@@ -10,7 +10,7 @@ void setup(){
   radius = avatar_size * 200.0;
   smooth();
   
-  size( 350, 350 );
+  size( sketch_width, sketch_height );
   frameRate( 15 );
   X = width / (int)(4.0 * avatar_speed);
   Y = width / (int)(4.0 * avatar_speed);

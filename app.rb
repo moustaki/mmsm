@@ -20,6 +20,11 @@ configure do
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
 end
 
+before do
+  @phone = request.env['WURFL']
+  @sketch_width = @phone ? @phone.max_image_width : 350
+end
+
 get '/lastfm/:username' do |username|
   @tracks = @@lastfm.user.get_recent_tracks(username, 10).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}.select {|t| t.empty?}
   erb :tracks
