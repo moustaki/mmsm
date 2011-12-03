@@ -37,27 +37,59 @@ module Magicbox
     end
 
     def self.avatar_size(tracks)
-      rand
+      loudness = 0.0
+      tracks.each do |track|
+        loudness += track.loudness
+      end
+      loudness /= tracks.size
+      loudness = (20 + loudness) / 20.0
+      loudness = 0.1 if loudness < 0.1
+      return loudness
     end
 
     def self.avatar_colour(tracks)
-      rand
+      key = 0.0
+      tracks.each do |track|
+        key += track.key
+      end
+      key /= (tracks.size * 11.0)
+      return key
     end
 
     def self.avatar_frequency(tracks)
-      rand
+      tempo = 0.0
+      tracks.each do |track|
+        tempo += track.tempo
+      end
+      tempo /= (tracks.size * 60)
+      return tempo
     end
 
     def self.avatar_amplitude(tracks)
-      rand
+      amp = 0.0
+      tracks.each do |track|
+        amp += track.danceability
+      end
+      amp /= tracks.size
+      return amp
     end
 
     def self.avatar_mood(tracks)
-      rand
+      mode = 0.0
+      tracks.each do |track|
+        mode += track.mode
+      end
+      mode /= tracks.size
+      return mode
     end
 
     def self.avatar_speed(tracks)
-      rand
+      nrj = 0.0
+      tracks.each do |track|
+        nrj += track.energy
+      end
+      nrj /= tracks.size
+      return nrj
     end
 
   end
