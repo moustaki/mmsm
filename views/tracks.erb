@@ -19,13 +19,11 @@
     </ul>
     
     <% rand_artist = @tracks.sample.artist if @tracks.any? %>
-    <% if rand_artist %>
+    <% subjects = rand_artist.subjects %>
+    <% if rand_artist and subjects.any? %>
       <h2>I know more than you</h2>
-      
-      <% subjects = rand_artist.subjects %>
-      <% rand_subject = subjects[rand(subjects.size)] %>
       <p>
-        <%= rand_artist.name %> is a <%= rand_subject['label'] %>
+        <%= rand_artist.name %> is a <%= subjects.sample['label'] %>
       </p>
     <% end %>
   
