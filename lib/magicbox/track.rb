@@ -5,7 +5,7 @@ module Magicbox
 
   class Track
 
-    attr_accessor :artist, :id, :title, :key, :mode, :time_signature, :loudness, :energy, :tempo, :danceability
+    attr_accessor :artist, :id, :title, :key, :mode, :time_signature, :loudness, :energy, :tempo, :danceability, :hotttnesss
     @set = false
     @decay = 0.5
 
@@ -16,7 +16,7 @@ module Magicbox
           :results => 1,
           :artist  => artist,
           :title   => title,
-          :bucket  => 'audio_summary'
+          :bucket  => ['audio_summary', 'song_hotttnesss']
         }, :cache_control => 'max-age=300' })
         songs = data['response']['songs']
         return if songs.empty?
@@ -30,6 +30,7 @@ module Magicbox
         @energy = songs[0]['audio_summary']['energy']
         @tempo = songs[0]['audio_summary']['tempo']
         @danceability = songs[0]['audio_summary']['danceability']
+        @hotttnesss = songs[0]['song_hotttnesss']
         @set = true
     end
 
