@@ -3,7 +3,15 @@
     <canvas data-processing-sources="/processing/app.pde"></canvas>
   </div>
   <div class="six columns">
-    <h2>Hi, I'm <%= @username %>. <br>I'm listening to:</h2>
+    <h2>
+      <%= monster_greetings %><br/>
+      I'm <%= @username %>'s <%= monster_nickname %>.
+    </h2>
+    <p>
+      He's just listened to <%= @tracks.first.title %> by <% @tracks.first.artist.name %>.
+      It was <%= track_appreciation(@tracks.first) %>.
+    </p>
+    <p>My owner also recently enjoyed:</p>
     <ul>
       <% @tracks.each do |track| %>
         <li><%= track.artist.name %> - <%= track.title %></li>

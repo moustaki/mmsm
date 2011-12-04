@@ -16,7 +16,7 @@ module Magicbox
           :artist  => artist,
           :title   => title,
           :bucket  => 'audio_summary'
-        }})
+        }, :cache_control => 'max-age=300' })
         songs = data['response']['songs']
         return if songs.empty?
         @title = songs[0]['title']

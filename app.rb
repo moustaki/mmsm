@@ -12,6 +12,8 @@ require 'restclient/components'
 require_relative 'lib/magicbox/artist'
 require_relative 'lib/magicbox/track'
 
+require_relative 'helpers'
+
 configure do
   # Base.setup
   @@config = YAML.load_file("config.yml") rescue nil || {}
