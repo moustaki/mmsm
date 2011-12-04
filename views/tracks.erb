@@ -1,16 +1,15 @@
 <div class="six columns" id="processing-sketch">
   <canvas data-processing-sources="/processing/app.pde"></canvas>
-<h3>Characteristics</h3>
-<p>
-<ul>
-<li>Strength: <%= (Magicbox::Track.avatar_size(@tracks) * 100).round %></li>
-<li>Happiness: <%= (Magicbox::Track.avatar_mood(@tracks) * 100).round %></li>
-<li>Attack: <%= (Magicbox::Track.avatar_colour(@tracks) * 100).round %></li>
-<li>Adrenaline: <%= (Magicbox::Track.avatar_frequency(@tracks) * 100).round %></li>
-<li>Territory: <%= (Magicbox::Track.avatar_amplitude(@tracks) * 100).round %></li>
-<li>Speed: <%= (Magicbox::Track.avatar_speed(@tracks) * 100).round %></li>
-</ul>
-</p>
+  <%= erb(:_social) %>
+  <h3>Characteristics</h3>
+  <ul>
+  <li>Strength: <%= (Magicbox::Track.avatar_size(@tracks) * 100).round %></li>
+  <li>Happiness: <%= (Magicbox::Track.avatar_mood(@tracks) * 100).round %></li>
+  <li>Attack: <%= (Magicbox::Track.avatar_colour(@tracks) * 100).round %></li>
+  <li>Adrenaline: <%= (Magicbox::Track.avatar_frequency(@tracks) * 100).round %></li>
+  <li>Territory: <%= (Magicbox::Track.avatar_amplitude(@tracks) * 100).round %></li>
+  <li>Speed: <%= (Magicbox::Track.avatar_speed(@tracks) * 100).round %></li>
+  </ul>
 </div>
 <div class="eight columns">
   <h2>
