@@ -33,7 +33,7 @@
     <% if rand_artist and subjects.any? %>
       <h2>I know more than you</h2>
       <p>
-        <a href="<%= rand_artist.seevl_uri %>"><%= rand_artist.name %></a> is a <%= subjects.sample['label'] %>
+        <a href="<%= rand_artist.seevl_uri %>"><%= rand_artist.name %></a> is a <a href="<%= subjects.sample['uri'] %>"><%= subjects.sample['label'] %></a>
       </p>
     <% end %>
   
