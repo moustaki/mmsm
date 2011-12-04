@@ -63,7 +63,7 @@ module Magicbox
         :user => user,
         :format => 'json',
         :api_key => ENV['LASTFM_API_KEY'],
-        :limit => 40
+        :limit => 20
       }})
       return [] if data.nil?
       artists = []
