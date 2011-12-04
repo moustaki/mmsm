@@ -28,4 +28,5 @@ hr { border: solid #545642; }
 
 footer { margin-top: 1em; }
 footer .container { background-color: #0a171b; }
-footer a { color: #767a68; }
+a { color: #767a68; }
+a:visited { color: #767a68; }
