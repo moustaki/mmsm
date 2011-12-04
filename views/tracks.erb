@@ -24,7 +24,7 @@
     <p>My owner also recently enjoyed:</p>
     <ul>
       <% @tracks.each do |track| %>
-        <li><%= track.artist.name %> - <%= track.title %></li>
+        <li><a href="<%= track.artist.seevl_uri %>"><%= track.artist.name %></a> - <%= track.title %></li>
       <% end %>
     </ul>
     
@@ -33,7 +33,7 @@
     <% if rand_artist and subjects.any? %>
       <h2>I know more than you</h2>
       <p>
-        <%= rand_artist.name %> is a <%= subjects.sample['label'] %>
+        <a href="<%= rand_artist.seevl_uri %>"><%= rand_artist.name %></a> is a <%= subjects.sample['label'] %>
       </p>
     <% end %>
   
