@@ -59,6 +59,12 @@ module Magicbox
       return key
     end
 
+    def self.avatar_shape(tracks)
+      col = self.avatar_colour(tracks)
+      col *= 12
+      return col.round
+    end
+
     def self.avatar_frequency(tracks)
       tempo = 0.0
       norm = 0.0
