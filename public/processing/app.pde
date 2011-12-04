@@ -197,7 +197,11 @@ class Mouth {
 
 Avatar avatarFactory(int seed) {
   avatar = new Avatar();
-  avatar.body = new ShinyBody();
+  if (avatar_shape == 0) {
+    avatar.body = new Body();
+  } else {
+    avatar.body = new ShinyBody();
+  }
   
   avatar.eyes = new Eye[2];
   avatar.eyes[0] = new Eye(-0.15, 0.2);
