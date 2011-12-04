@@ -8,7 +8,7 @@
   </h2>
   <% if @tracks.any? %>
     <p>
-      He's just listened to <%= @tracks.first.title %> by <% @tracks.first.artist.name %>.
+      He's just listened to <%= @tracks.first.title %> by <%= @tracks.first.artist.name %>.
       It was <%= track_appreciation(@tracks.first) %>.
     </p>
     <p>My owner also recently enjoyed:</p>
