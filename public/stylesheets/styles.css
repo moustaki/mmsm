@@ -22,7 +22,7 @@
 body { background-color: #0a171b; color: #cfc392; font-family: MuseoSans500; }
 .container { background-color: #20211c; }
 h1 a, h1 a:visited { font-family: 'Rammetto One', cursive; color: #e0a929; text-decoration: none; }
-h1 a span { text-decoration: line-through; font-weight: bold; }
+span.monster { text-decoration: line-through; }
 h2, h3 { color: #cfc392; font-family: MuseoSlab500; color: #B75819; font-weight: 900;}
 hr { border: solid #545642; }
 

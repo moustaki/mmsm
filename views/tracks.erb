@@ -4,7 +4,7 @@
 <div class="one-half column">
   <h2>
     <%= monster_greetings %><br/>
-    I'm <%= @username %>'s <%= monster_nickname %>.
+    I'm <%= @username %>'s <span class="monster"><%= monster_nickname %></span> <%= monster_shape %>.
   </h2>
   <% if @tracks.any? %>
     <p>

@@ -14,4 +14,8 @@ helpers do
   def sad_monster
     ['I want to cry.', 'My existence is meaningless...', 'What a loser.'].sample
   end
+  
+  def monster_shape
+    %[circle triangle square pentagon hexagon heptagon octagon nonagon decagon hendecagon dodecagon].sample
+  end
 end
