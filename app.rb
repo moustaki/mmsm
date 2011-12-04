@@ -43,7 +43,8 @@ end
 
 get '/lastfm/:username' do |username|
   @username = username
-  @tracks = @@lastfm.user.get_recent_tracks(username, 10).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}.select {|t| t.empty?}
+  # @tracks = @@lastfm.user.get_recent_tracks(username, 2).map { |t| Magicbox::Track.new(t['name'], t['artist']['content'])}.select {|t| t.empty?}
+  @tracks = []
   erb :tracks
 end
 

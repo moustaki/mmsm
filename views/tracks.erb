@@ -1,12 +1,12 @@
-<div class="row">
-  <div class="six columns" id="processing-sketch">
-    <canvas data-processing-sources="/processing/app.pde"></canvas>
-  </div>
-  <div class="six columns">
-    <h2>
-      <%= monster_greetings %><br/>
-      I'm <%= @username %>'s <%= monster_nickname %>.
-    </h2>
+<div class="one-half column" id="processing-sketch">
+  <canvas data-processing-sources="/processing/app.pde"></canvas>
+</div>
+<div class="one-half column">
+  <h2>
+    <%= monster_greetings %><br/>
+    I'm <%= @username %>'s <%= monster_nickname %>.
+  </h2>
+  <% if @tracks.any? %>
     <p>
       He's just listened to <%= @tracks.first.title %> by <% @tracks.first.artist.name %>.
       It was <%= track_appreciation(@tracks.first) %>.
@@ -17,7 +17,7 @@
         <li><%= track.artist.name %> - <%= track.title %></li>
       <% end %>
     </ul>
-    
+  
     <h2>I know more than you</h2>
     <% rand_artist = @tracks[rand(@tracks.size)].artist %>
     <% subjects = rand_artist.subjects %>
@@ -25,16 +25,18 @@
     <p>
       <%= rand_artist.name %> is a <%= rand_subject['label'] %>
     </p>
-    
+  
     <h2>Pick a fight!</h2>
     <%= form('/go', :get) %>
       <%= hidden(:user1, :lastfm, :value => @username) %>
       <%= label(:user2, :lastfm, 'Fight Last.fm User Name') %>
       <%= input(:user2, :lastfm) %>
     <%= submit %>
+  <% else %>
+    <p>My owner doesn't listen to music.</p>
+    <p><%= sad_monster %></p>
     
-    
-  </div>
+  <% end %>
 </div>
 
 <%= erb(:_setup_avatar) %>

@@ -10,4 +10,8 @@ helpers do
   def track_appreciation(track)
     %w(great! terrible. mild).sample
   end
+  
+  def sad_monster
+    ['I want to cry.', 'My existence is meaningless...', 'What a loser.'].sample
+  end
 end

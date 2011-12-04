@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'MuseoSans500';
+    src: url('MuseoSans_500-webfont.eot');
+    src: url('MuseoSans_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('MuseoSans_500-webfont.woff') format('woff'),
+         url('MuseoSans_500-webfont.ttf') format('truetype'),
+         url('MuseoSans_500-webfont.svg#MuseoSans500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body { background-color: #0a171b; color: #cfc392; font-family: MuseoSans500; }
+.container { background-color: #20211c; }
+h1 { font-family: 'Rammetto One', cursive; color: #e0a929; }
+h2, h3 { color: #cfc392; }
+hr { border: solid #545642; }
