@@ -67,6 +67,7 @@ module Magicbox
 
     def self.avatar_shape(tracks)
       col = self.avatar_colour(tracks)
+      return 0 if col.nan?
       col *= 12
       return col.round
     end

@@ -62,9 +62,10 @@ module Magicbox
         :method => 'user.gettopartists',
         :user => user,
         :format => 'json',
-        :api_key => ENV['LASTFM_KEY'],
+        :api_key => ENV['LASTFM_API_KEY'],
         :limit => 20
       }})
+      return [] if data.nil?
       artists = []
       data['topartists']['artist'].each do |a|
         image_url = nil
