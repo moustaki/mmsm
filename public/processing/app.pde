@@ -23,8 +23,8 @@ class Avatar {
   }
   
   void draw() {
-    w = w + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
-    h = h + sin( frameCount * avatar_frequency / ( (10 * avatar_amplitude)) );
+    w = w + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
+    h = h + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
   
     body.draw(this);    
     eyes.draw(this);
