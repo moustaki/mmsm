@@ -1,6 +1,6 @@
 class Avatar {
   Body body;
-  Eyes eyes;
+  Eye[] eyes;
   Mouth mouth;
   
   int x, y;
@@ -26,8 +26,10 @@ class Avatar {
     w = w + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
     h = h + avatar_amplitude * 5 * sin( frameCount * avatar_frequency / 2.0 );
   
-    body.draw(this);    
-    eyes.draw(this);
+    body.draw(this);
+    for (int i=0; i<eyes.length; i++) {
+      eyes[i].draw(this);
+    }
     mouth.draw(this);    
   }
 }
@@ -86,7 +88,7 @@ class ShinyBody extends Body {
   int numVertices;
   
   public ShinyBody() {
-    numVertices = (int)random(3, 10);
+    numVertices = avatar_shape;
   }
   
   public void draw(Avatar avatar) {
@@ -149,14 +151,34 @@ class ImageBody extends Body {
 }
 
 
-class Eyes {
+class Eye {
+  float x, y;
+  public Eye(float x, float y) {
+    this.x = x;
+    this.y = y;
+  }
+  
   public void draw(Avatar avatar) {
     fill(255);
-    stroke(1);
-    strokeWeight(1);
-    ellipse( avatar.x - (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
-    ellipse( avatar.x + (avatar.w/8), avatar.y - (avatar.h/5), avatar.w/10, avatar.h/10 );
+    stroke(0);
+    strokeWeight(3*avatar_size);
     
+    float r = avatar.w/7;
+    
+    pushMatrix();
+    translate(avatar.x + (avatar.w * this.x), avatar.y - (avatar.h * this.y));
+    
+    // eye bulb
+    ellipse(0, 0, r, r);
+    
+    // iris
+    int pX = (int) map(mouseX, 0, width, -r/4, r/4);
+    int pY = (int) map(mouseY, 0, height, -r/4, r/4);
+    noStroke();
+    fill(0);
+    ellipse(pX, pY, r/2, r/2);
+    
+    popMatrix();
   }
 }
 
@@ -176,7 +198,11 @@ class Mouth {
 Avatar avatarFactory(int seed) {
   avatar = new Avatar();
   avatar.body = new ShinyBody();
-  avatar.eyes = new Eyes();
+  
+  avatar.eyes = new Eye[2];
+  avatar.eyes[0] = new Eye(-0.15, 0.2);
+  avatar.eyes[1] = new Eye(+0.15, 0.2);
+
   avatar.mouth = new Mouth();
   return avatar;
 }

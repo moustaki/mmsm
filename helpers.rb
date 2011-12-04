@@ -19,7 +19,7 @@ helpers do
     %w(scary hideous terrible).sample
   end
   
-  def monster_shape
-    %w(circle triangle square pentagon hexagon heptagon octagon nonagon decagon hendecagon dodecagon).sample
+  def monster_shape(i)
+    %w(circle point line triangle square pentagon hexagon heptagon octagon nonagon decagon hendecagon dodecagon)[i]
   end
 end
