@@ -8,7 +8,13 @@ helpers do
   end
   
   def track_appreciation(track)
-    %w(great! terrible. mild).sample
+    if track.hotttnesss > 0.6
+        return 'great'
+    elsif track.hotttnesss > 0.3
+        return 'mild'
+    else
+        return 'terrible'
+    end
   end
   
   def sad_monster

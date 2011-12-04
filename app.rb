@@ -68,3 +68,26 @@ end
 #   
 #   redirect '/'
 # end
+
+module RestClient
+  class Request
+    def process_url_params url, headers
+      url_params = {}
+      headers.delete_if do |key, value|
+        if 'params' == key.to_s.downcase && value.is_a?(Hash)
+          url_params.merge! value
+          true
+        else
+          false
+        end
+      end
+      unless url_params.empty?
+        query_string = url_params.map { |k, v| [v].flatten.map { |vv| "#{k.to_s}=#{CGI::escape(vv.to_s)}" }.join('&') }.join('&')
+        url + "?#{query_string}"
+      else
+        url
+      end
+    end
+  end
+end
+
