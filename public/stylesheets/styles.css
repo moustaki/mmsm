@@ -8,9 +8,22 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'MuseoSlab500';
+    src: url('Museo_Slab_500-webfont.eot');
+    src: url('Museo_Slab_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('Museo_Slab_500-webfont.woff') format('woff'),
+         url('Museo_Slab_500-webfont.ttf') format('truetype'),
+         url('Museo_Slab_500-webfont.svg#MuseoSlab500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body { background-color: #0a171b; color: #cfc392; font-family: MuseoSans500; }
 .container { background-color: #20211c; }
-h1 { font-family: 'Rammetto One', cursive; color: #e0a929; }
-h2, h3 { color: #cfc392; }
+h1 a, h1 a:visited { font-family: 'Rammetto One', cursive; color: #e0a929; text-decoration: none; }
+h2, h3 { color: #cfc392; font-family: MuseoSlab500; }
 hr { border: solid #545642; }
+
+footer { margin-top: 1em; }
+footer .container { background-color: #0a171b; }
