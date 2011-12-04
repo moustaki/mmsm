@@ -4,7 +4,7 @@ helpers do
   end
   
   def monster_nickname
-    %w(monster pet).sample
+    %w(monster beast demon monstrosity fiend freak).sample
   end
   
   def track_appreciation(track)
@@ -13,6 +13,10 @@ helpers do
   
   def sad_monster
     ['I want to cry.', 'My existence is meaningless...', 'What a loser.'].sample
+  end
+  
+  def monster_adjective
+    %w(scary hideous terrible).sample
   end
   
   def monster_shape
