@@ -1,9 +1,9 @@
 <div class="eight columns">
-  <p>We tried to generate monsters, honest. We gave up though, and used shapes instead.</p>
+  <p>Get your own <span class="monster"><%= monster_adjective %> <%= monster_nickname %></span> shape and feed it some music.</p>
 </div>
 <div class="eight columns">
   <%= form('/go', :get) %>
-    <%= label(:user1, :lastfm, 'Last.fm User Name') %>
+    <%= label(:user1, :lastfm, 'Enter a Last.fm User Name') %>
     <%= input(:user1, :lastfm) %>
   <%= submit %>
 </div>
