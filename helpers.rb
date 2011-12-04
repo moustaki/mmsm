@@ -4,7 +4,7 @@ helpers do
   end
   
   def monster_nickname
-    %w(monster beast demon monstrosity fiend freak).sample
+    %w(monster ghoul zombie vampire ninja robot dragon beast demon monstrosity fiend freak).sample
   end
   
   def track_appreciation(track)
@@ -22,7 +22,7 @@ helpers do
   end
   
   def monster_adjective
-    %w(scary hideous terrible).sample
+    %w(scary hideous terrible fierce courageous tough).sample
   end
   
   def monster_shape(i)
