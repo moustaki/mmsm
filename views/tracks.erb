@@ -6,7 +6,7 @@
     <%= monster_greetings %><br/>
     I'm <%= @username %>'s <span class="monster"><%= monster_adjective %> <%= monster_nickname %></span> <%= monster_shape(Magicbox::Track.avatar_shape(@tracks)) %>.
   </h2>
-  <% if @tracks.any? %>
+  <% if @tracks.any? and not @tracks.first.played_too_long_ago?%>
     <p>
       He's just listened to <%= @tracks.first.title %> by <%= @tracks.first.artist.name %>.
       It was <%= track_appreciation(@tracks.first) %>.
@@ -34,7 +34,7 @@
       <%= input(:user2, :lastfm) %>
     <%= submit %>
   <% else %>
-    <p>My owner doesn't listen to music.</p>
+    <p>My owner didn't feed me for ages...</p>
     <p><%= sad_monster %></p>
     
   <% end %>

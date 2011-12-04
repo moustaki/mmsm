@@ -9,7 +9,7 @@ module Magicbox
     @set = false
     @decay = 0.5
 
-    def initialize(title, artist = nil)
+    def initialize(title, artist = nil, played_date = nil)
         data = JSON.parse(RestClient.get 'http://developer.echonest.com/api/v4/song/search', { :params => {
           :api_key => ENV['ECHONEST_API_KEY'],
           :format  => 'json',
@@ -32,10 +32,15 @@ module Magicbox
         @danceability = songs[0]['audio_summary']['danceability']
         @hotttnesss = songs[0]['song_hotttnesss']
         @set = true
+        @played_date = played_date.to_i
     end
 
     def empty?
       @set
+    end
+
+    def played_too_long_ago?
+      return (Time.new.to_i - @played_date > 2592000)
     end
 
     def self.avatar_size(tracks)
@@ -89,6 +94,7 @@ module Magicbox
     end
 
     def self.avatar_mood(tracks)
+      return 0.0 if tracks.first.played_too_long_ago?
       mode = 0.0
       norm = 0.0
       tracks.each_with_index do |track, i|
