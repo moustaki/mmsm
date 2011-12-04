@@ -7,6 +7,7 @@ module Magicbox
 
     attr_accessor :artist, :id, :title, :key, :mode, :time_signature, :loudness, :energy, :tempo, :danceability
     @set = false
+    @decay = 0.5
 
     def initialize(title, artist = nil)
         data = JSON.parse(RestClient.get 'http://developer.echonest.com/api/v4/song/search', { :params => {
@@ -49,46 +50,56 @@ module Magicbox
 
     def self.avatar_colour(tracks)
       key = 0.0
-      tracks.each do |track|
-        key += track.key
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        key += track.key * (i ** @decay)
+        norm += (i ** @decay)
       end
-      key /= (tracks.size * 11.0)
+      key /= (norm * 11.0)
       return key
     end
 
     def self.avatar_frequency(tracks)
       tempo = 0.0
-      tracks.each do |track|
-        tempo += track.tempo
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        tempo += track.tempo * (i ** @decay)
+        norm += (i ** @decay)
       end
-      tempo /= (tracks.size * 60)
+      tempo /= (norm * 60)
       return tempo
     end
 
     def self.avatar_speed(tracks)
       amp = 0.0
-      tracks.each do |track|
-        amp += track.danceability
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        amp += track.danceability * (i ** @decay)
+        norm += i ** @decay
       end
-      amp /= tracks.size
+      amp /= norm
       return amp
     end
 
     def self.avatar_mood(tracks)
       mode = 0.0
-      tracks.each do |track|
-        mode += track.mode
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        mode += track.mode * (i ** @decay)
+        norm += i ** @decay
       end
-      mode /= tracks.size
+      mode /= norm
       return mode
     end
 
     def self.avatar_amplitude(tracks)
       nrj = 0.0
-      tracks.each do |track|
-        nrj += track.energy
+      norm = 0.0
+      tracks.each_with_index do |track, i|
+        nrj += track.energy * (i ** @decay)
+        norm += i ** @decay
       end
-      nrj /= tracks.size
+      nrj /= norm
       return nrj
     end
 
