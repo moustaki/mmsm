@@ -15,6 +15,8 @@ require_relative 'lib/magicbox/track'
 require_relative 'helpers'
 
 configure do
+  set :cache, Dalli::Client.new
+  
   # Base.setup
   @@config = YAML.load_file("config.yml") rescue nil || {}
   set :twitter_oauth_config,  
@@ -26,7 +28,9 @@ configure do
   ENV['SEEVL_SPARQL'] ||= @@config['seevl_sparql']
   RestClient.enable Rack::Cache,
     :verbose     => true,
-    :default_ttl => 9999999999
+    :default_ttl => 9999999999,
+    :metastore => settings.cache,
+    :entitystore => settings.cache
 end
 
 get '/' do

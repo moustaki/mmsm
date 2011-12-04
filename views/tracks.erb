@@ -17,14 +17,17 @@
         <li><%= track.artist.name %> - <%= track.title %></li>
       <% end %>
     </ul>
-  
-    <h2>I know more than you</h2>
-    <% rand_artist = @tracks[rand(@tracks.size)].artist %>
-    <% subjects = rand_artist.subjects %>
-    <% rand_subject = subjects[rand(subjects.size)] %>
-    <p>
-      <%= rand_artist.name %> is a <%= rand_subject['label'] %>
-    </p>
+    
+    <% rand_artist = @tracks.sample.artist if @tracks.any? %>
+    <% if rand_artist %>
+      <h2>I know more than you</h2>
+      
+      <% subjects = rand_artist.subjects %>
+      <% rand_subject = subjects[rand(subjects.size)] %>
+      <p>
+        <%= rand_artist.name %> is a <%= rand_subject['label'] %>
+      </p>
+    <% end %>
   
     <h2>Pick a fight!</h2>
     <%= form('/go', :get) %>
