@@ -16,6 +16,6 @@ helpers do
   end
   
   def monster_shape
-    %[circle triangle square pentagon hexagon heptagon octagon nonagon decagon hendecagon dodecagon].sample
+    %w(circle triangle square pentagon hexagon heptagon octagon nonagon decagon hendecagon dodecagon).sample
   end
 end
