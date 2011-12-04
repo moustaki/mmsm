@@ -187,7 +187,7 @@ class Mouth {
     noFill();
     stroke(palette[0]);
     strokeWeight( avatar_size * 10);
-    if (avatar_mood > 0.5) {
+    if (avatar_mood > 0.7) {
       arc(avatar.x, avatar.y + (avatar.h/3)*avatar_mood, avatar.w/3, avatar.h/10, 0, PI);
     } else {
       arc(avatar.x, avatar.y + (avatar.h/3)*avatar_mood, avatar.w/3, avatar.h/10, PI, TWO_PI);
